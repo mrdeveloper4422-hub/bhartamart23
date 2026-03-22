@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BharatMart - India Ka Apna Bazaar</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<!-- LANDING PAGE -->
+<div id="landing-page" class="page active">
+  <div class="landing-bg">
+    <div class="mandala-bg"></div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <header class="landing-header">
+    <div class="logo-wrap">
+      <div class="logo-icon">🪔</div>
+      <div class="logo-text">
+        <span class="logo-main">BharatMart</span>
+        <span class="logo-sub">India Ka Apna Bazaar</span>
+      </div>
+    </div>
+    <nav class="landing-nav">
+      <a href="#features">Features</a>
+      <a href="#categories">Categories</a>
+      <button class="btn-primary" onclick="showAuth()">Sign In / Register</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🇮🇳 Made in India, Made for India</div>
+      <h1>Shop <span class="highlight">Everything Indian</span><br>Delivered Fast</h1>
+      <p>From Himalayan spices to handloom sarees — discover 10,000+ products across every category, made with love in Bharat.</p>
+      <div class="hero-btns">
+        <button class="btn-primary btn-lg" onclick="showAuth()">
+          🛍️ Start Shopping
+        </button>
+        <button class="btn-outline btn-lg" onclick="showAuth('guest')">
+          👀 Browse as Guest
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span>10K+</span><label>Products</label></div>
+        <div class="stat"><span>500+</span><label>Sellers</label></div>
+        <div class="stat"><span>28</span><label>States</label></div>
+        <div class="stat"><span>2hr</span><label>Delivery</label></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="product-orbit">
+        <div class="orbit-item" style="--i:0">🥭</div>
+        <div class="orbit-item" style="--i:1">🧵</div>
+        <div class="orbit-item" style="--i:2">🏺</div>
+        <div class="orbit-item" style="--i:3">🌶️</div>
+        <div class="orbit-item" style="--i:4">💎</div>
+        <div class="orbit-item" style="--i:5">📱</div>
+        <div class="orbit-item" style="--i:6">🎭</div>
+        <div class="orbit-item" style="--i:7">🌿</div>
+        <div class="center-icon">🪔</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-strip" id="features">
+    <div class="feature-card"><span>⚡</span><p>Express Delivery</p></div>
+    <div class="feature-card"><span>🔒</span><p>Secure Payments</p></div>
+    <div class="feature-card"><span>↩️</span><p>Easy Returns</p></div>
+    <div class="feature-card"><span>🤝</span><p>Support Local</p></div>
+    <div class="feature-card"><span>📱</span><p>UPI & COD</p></div>
+  </section>
+
+  <section class="categories-preview" id="categories">
+    <h2>Shop Every Category</h2>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="showAuth()"><span>🌾</span><p>Agriculture</p></div>
+      <div class="cat-card" onclick="showAuth()"><span>🧥</span><p>Fashion</p></div>
+      <div class="cat-card" onclick="showAuth()"><span>📱</span><p>Electronics</p></div>
+      <div class="cat-card" onclick="showAuth()"><span>🏺</span><p>Handicrafts</p></div>
+      <div class="cat-card" onclick="showAuth()"><span>🌿</span><p>Ayurveda</p></div>
+      <div class="cat-card" onclick="showAuth()"><span>🎵</span><p>Music & Arts</p></div>
+      <div class="cat-card" onclick="showAuth()"><span>🍛</span><p>Food & Spices</p></div>
+      <div class="cat-card" onclick="showAuth()"><span>💎</span><p>Jewellery</p></div>
+      <div class="cat-card" onclick="showAuth()"><span>🏠</span><p>Home & Living</p></div>
+      <div class="cat-card" onclick="showAuth()"><span>📚</span><p>Books</p></div>
+      <div class="cat-card" onclick="showAuth()"><span>🧘</span><p>Wellness</p></div>
+      <div class="cat-card" onclick="showAuth()"><span>🚗</span><p>Auto Parts</p></div>
+    </div>
+  </section>
+
+  <footer class="landing-footer">
+    <p>🪔 BharatMart © 2025 | Jai Hind 🇮🇳</p>
+  </footer>
+</div>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal" class="modal hidden">
+  <div class="modal-overlay" onclick="closeAuth()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeAuth()">✕</button>
+    <div class="auth-logo">🪔 BharatMart</div>
+    
+    <div id="auth-step-1">
+      <h2>Welcome Back!</h2>
+      <p class="auth-sub">Enter your email or mobile to continue</p>
+      <div class="input-group">
+        <input type="text" id="auth-contact" placeholder="Email or Mobile Number" />
+        <div class="input-icon">📱</div>
+      </div>
+      <div class="auth-toggle">
+        <label><input type="radio" name="contact-type" value="email" checked> Email</label>
+        <label><input type="radio" name="contact-type" value="mobile"> Mobile</label>
+      </div>
+      <button class="btn-primary full-width" onclick="sendOTP()">Send OTP →</button>
+      <div id="otp-status" class="otp-status"></div>
+    </div>
+
+    <div id="auth-step-2" class="hidden">
+      <h2>Enter OTP</h2>
+      <p class="auth-sub">We sent a 6-digit OTP to <span id="otp-sent-to"></span></p>
+      <div class="otp-inputs">
+        <input type="text" maxlength="1" class="otp-digit" oninput="otpNext(this,0)">
+        <input type="text" maxlength="1" class="otp-digit" oninput="otpNext(this,1)">
+        <input type="text" maxlength="1" class="otp-digit" oninput="otpNext(this,2)">
+        <input type="text" maxlength="1" class="otp-digit" oninput="otpNext(this,3)">
+        <input type="text" maxlength="1" class="otp-digit" oninput="otpNext(this,4)">
+        <input type="text" maxlength="1" class="otp-digit" oninput="otpNext(this,5)">
+      </div>
+      <button class="btn-primary full-width" onclick="verifyOTP()">Verify & Login →</button>
+      <button class="btn-ghost full-width" onclick="backToStep1()">← Change Contact</button>
+      <div id="otp-timer" class="otp-timer">Resend in <span id="timer-count">60</span>s</div>
+      <button id="resend-btn" class="btn-ghost hidden" onclick="sendOTP()">Resend OTP</button>
+    </div>
+
+    <div id="auth-step-3" class="hidden">
+      <h2>Complete Profile</h2>
+      <p class="auth-sub">New user? Let's set up your account</p>
+      <div class="input-group"><input type="text" id="reg-name" placeholder="Full Name" /></div>
+      <div class="input-group"><input type="text" id="reg-address" placeholder="Delivery Address" /></div>
+      <button class="btn-primary full-width" onclick="completeRegistration()">Create Account →</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN STORE -->
+<div id="store-page" class="page hidden">
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="location-bar">
+      <span>📍</span>
+      <span id="user-location">Delhi, India</span>
+    </div>
+    <div class="delivery-promise">⚡ Express delivery in 2 hours</div>
+    <div class="top-bar-right">
+      <span id="user-greeting">Hello, User</span>
+      <button class="icon-btn" onclick="toggleWishlist()">❤️</button>
+      <button class="icon-btn" onclick="showOrders()">📦 Orders</button>
+      <button class="icon-btn" onclick="logout()">🚪</button>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="store-header">
+    <div class="store-logo" onclick="goHome()">
+      <span class="logo-flame">🪔</span>
+      <div>
+        <div class="store-logo-name">BharatMart</div>
+        <div class="store-logo-tagline">India Ka Apna Bazaar</div>
+      </div>
+    </div>
+    <div class="search-bar">
+      <select id="search-category" class="search-cat">
+        <option value="all">All</option>
+        <option>Agriculture</option><option>Fashion</option><option>Electronics</option>
+        <option>Handicrafts</option><option>Ayurveda</option><option>Food & Spices</option>
+        <option>Jewellery</option><option>Home & Living</option><option>Books</option>
+        <option>Wellness</option><option>Auto Parts</option><option>Music & Arts</option>
+      </select>
+      <input type="text" id="search-input" placeholder="Search for anything Indian..." oninput="searchProducts()" />
+      <button class="search-btn" onclick="searchProducts()">🔍</button>
+    </div>
+    <div class="header-actions">
+      <button class="cart-btn" onclick="openCart()">
+        🛒 Cart <span id="cart-count" class="cart-badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Category Nav -->
+  <nav class="category-nav">
+    <button onclick="filterCategory('all')" class="cat-btn active">🏠 All</button>
+    <button onclick="filterCategory('Agriculture')" class="cat-btn">🌾 Agriculture</button>
+    <button onclick="filterCategory('Fashion')" class="cat-btn">🧥 Fashion</button>
+    <button onclick="filterCategory('Electronics')" class="cat-btn">📱 Electronics</button>
+    <button onclick="filterCategory('Handicrafts')" class="cat-btn">🏺 Handicrafts</button>
+    <button onclick="filterCategory('Ayurveda')" class="cat-btn">🌿 Ayurveda</button>
+    <button onclick="filterCategory('Food & Spices')" class="cat-btn">🍛 Food & Spices</button>
+    <button onclick="filterCategory('Jewellery')" class="cat-btn">💎 Jewellery</button>
+    <button onclick="filterCategory('Home & Living')" class="cat-btn">🏠 Home</button>
+    <button onclick="filterCategory('Books')" class="cat-btn">📚 Books</button>
+    <button onclick="filterCategory('Wellness')" class="cat-btn">🧘 Wellness</button>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="store-body">
+    <!-- Sidebar -->
+    <aside class="store-sidebar">
+      <div class="filter-section">
+        <h3>Filter Products</h3>
+        <div class="filter-group">
+          <label>Price Range</label>
+          <div class="price-range">
+            <input type="range" id="price-filter" min="0" max="50000" value="50000" oninput="applyFilters()">
+            <span>Up to ₹<span id="price-display">50000</span></span>
+          </div>
+        </div>
+        <div class="filter-group">
+          <label>Rating</label>
+          <div class="rating-filters">
+            <label><input type="checkbox" value="4" onchange="applyFilters()"> ⭐ 4+ Stars</label>
+            <label><input type="checkbox" value="3" onchange="applyFilters()"> ⭐ 3+ Stars</label>
+          </div>
+        </div>
+        <div class="filter-group">
+          <label>State of Origin</label>
+          <select id="state-filter" onchange="applyFilters()">
+            <option value="">All States</option>
+            <option>Rajasthan</option><option>Gujarat</option><option>Kerala</option>
+            <option>Tamil Nadu</option><option>West Bengal</option><option>Punjab</option>
+            <option>UP</option><option>Maharashtra</option>
+          </select>
+        </div>
+        <button class="btn-outline full-width" onclick="clearFilters()">Clear Filters</button>
+      </div>
+    </aside>
+
+    <!-- Product Grid -->
+    <main class="store-main">
+      <div class="hero-banner">
+        <div class="banner-slide active">
+          <div class="banner-content">
+            <span class="banner-badge">🔥 Limited Offer</span>
+            <h2>Festival Season Sale!</h2>
+            <p>Up to 70% off on Handicrafts, Textiles & More</p>
+            <button class="btn-primary" onclick="filterCategory('Handicrafts')">Shop Now →</button>
+          </div>
+          <div class="banner-art">🎪🪔🎨</div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h2 id="section-title">🔥 Featured Products</h2>
+        <div class="sort-bar">
+          <select id="sort-select" onchange="sortProducts()">
+            <option value="default">Sort: Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Best Rated</option>
+            <option value="newest">Newest</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="product-grid" class="product-grid"></div>
+      <div id="no-products" class="no-products hidden">
+        <span>🔍</span><p>No products found. Try a different search!</p>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL -->
+<div id="product-detail" class="page hidden">
+  <div class="detail-header">
+    <button class="back-btn" onclick="closeDetail()">← Back</button>
+    <button class="cart-btn" onclick="openCart()">🛒 <span id="detail-cart-count">0</span></button>
+  </div>
+  <div id="product-detail-content"></div>
+</div>
+
+<!-- CART DRAWER -->
+<div id="cart-drawer" class="drawer hidden">
+  <div class="drawer-overlay" onclick="closeCart()"></div>
+  <div class="drawer-panel">
+    <div class="drawer-header">
+      <h2>🛒 Your Cart</h2>
+      <button onclick="closeCart()">✕</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cart-total-amount">₹0</span>
+      </div>
+      <div class="free-delivery-bar">
+        <div id="free-delivery-progress"></div>
+      </div>
+      <button class="btn-primary full-width" onclick="checkout()">Proceed to Checkout →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<div id="checkout-page" class="page hidden">
+  <div class="checkout-header">
+    <button onclick="closeCheckout()">← Back to Cart</button>
+    <h2>🪔 BharatMart Checkout</h2>
+  </div>
+  <div class="checkout-body">
+    <div class="checkout-left">
+      <div class="checkout-section">
+        <h3>📍 Delivery Address</h3>
+        <div class="input-group"><input type="text" id="del-name" placeholder="Full Name" /></div>
+        <div class="input-group"><input type="text" id="del-mobile" placeholder="Mobile Number" /></div>
+        <div class="input-group"><textarea id="del-address" placeholder="Full Address with Pincode"></textarea></div>
+      </div>
+
+      <div class="checkout-section">
+        <h3>💳 Payment Method</h3>
+        <div class="payment-options">
+          <label class="payment-opt">
+            <input type="radio" name="payment" value="upi" checked>
+            <div class="payment-card">
+              <span>📱</span>
+              <div>
+                <strong>UPI Payment</strong>
+                <p>Pay via PhonePe, GPay, Paytm</p>
+              </div>
+            </div>
+          </label>
+          <label class="payment-opt">
+            <input type="radio" name="payment" value="cod">
+            <div class="payment-card">
+              <span>💵</span>
+              <div>
+                <strong>Cash on Delivery</strong>
+                <p>Pay when you receive</p>
+              </div>
+            </div>
+          </label>
+          <label class="payment-opt">
+            <input type="radio" name="payment" value="card">
+            <div class="payment-card">
+              <span>💳</span>
+              <div>
+                <strong>Card Payment</strong>
+                <p>Credit / Debit Card</p>
+              </div>
+            </div>
+          </label>
+        </div>
+        
+        <div id="upi-section" class="upi-section">
+          <div class="upi-apps">
+            <div class="upi-app" onclick="selectUPI('gpay')">
+              <span>🟢</span> Google Pay
+            </div>
+            <div class="upi-app" onclick="selectUPI('phonepe')">
+              <span>🟣</span> PhonePe
+            </div>
+            <div class="upi-app" onclick="selectUPI('paytm')">
+              <span>🔵</span> Paytm
+            </div>
+            <div class="upi-app" onclick="selectUPI('bhim')">
+              <span>🔴</span> BHIM UPI
+            </div>
+          </div>
+          <div class="input-group">
+            <input type="text" id="upi-id" placeholder="Enter UPI ID (e.g. name@upi)" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkout-right">
+      <div class="order-summary">
+        <h3>📦 Order Summary</h3>
+        <div id="checkout-items"></div>
+        <div class="summary-row"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+        <div class="summary-row"><span>Delivery</span><span class="free">FREE</span></div>
+        <div class="summary-row total-row"><span>Total</span><span id="final-total">₹0</span></div>
+        <button class="btn-primary full-width" onclick="placeOrder()">🛍️ Place Order</button>
+        <div class="secure-badge">🔒 100% Secure Checkout</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER SUCCESS -->
+<div id="order-success" class="modal hidden">
+  <div class="modal-overlay"></div>
+  <div class="modal-box success-box">
+    <div class="success-animation">🎉</div>
+    <h2>Order Placed Successfully!</h2>
+    <p>Order ID: <strong id="success-order-id"></strong></p>
+    <p>Estimated delivery: <strong>2-4 hours</strong></p>
+    <div class="tracking-steps">
+      <div class="track-step active">✅ Order Confirmed</div>
+      <div class="track-step">🔄 Processing</div>
+      <div class="track-step">🛵 Out for Delivery</div>
+      <div class="track-step">🏠 Delivered</div>
+    </div>
+    <button class="btn-primary" onclick="closeSuccess()">Continue Shopping</button>
+  </div>
+</div>
+
+<!-- ORDERS PAGE -->
+<div id="orders-page" class="page hidden">
+  <div class="orders-header">
+    <button onclick="closeOrders()">← Back to Shopping</button>
+    <h2>📦 My Orders</h2>
+  </div>
+  <div id="orders-list" class="orders-list"></div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel" class="page hidden">
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <span>🪔</span>
+        <div>
+          <div>BharatMart</div>
+          <div class="admin-role-tag" id="admin-role-display">Admin</div>
+        </div>
+      </div>
+      <nav class="admin-nav">
+        <button onclick="adminTab('dashboard')" class="admin-nav-btn active" data-tab="dashboard">📊 Dashboard</button>
+        <button onclick="adminTab('products')" class="admin-nav-btn" data-tab="products">📦 Products</button>
+        <button onclick="adminTab('orders')" class="admin-nav-btn" data-tab="orders">🛒 Orders</button>
+        <button onclick="adminTab('users')" class="admin-nav-btn" data-tab="users">👥 Users</button>
+        <button onclick="adminTab('delivery')" class="admin-nav-btn" data-tab="delivery" id="tab-delivery">🛵 Delivery Boys</button>
+        <button onclick="adminTab('team')" class="admin-nav-btn" data-tab="team" id="tab-team">👑 Team Management</button>
+        <button onclick="adminTab('spreadsheet')" class="admin-nav-btn" data-tab="spreadsheet">📊 Spreadsheet DB</button>
+        <button onclick="adminTab('settings')" class="admin-nav-btn" data-tab="settings" id="tab-settings">⚙️ Settings</button>
+      </nav>
+      <button class="admin-logout" onclick="adminLogout()">🚪 Exit Admin</button>
+    </aside>
+
+    <main class="admin-main">
+      <!-- Dashboard -->
+      <div id="tab-dashboard" class="admin-tab active">
+        <h1>📊 Dashboard</h1>
+        <div class="dash-stats">
+          <div class="stat-card orange"><div class="stat-num" id="dash-orders">0</div><div>Total Orders</div></div>
+          <div class="stat-card green"><div class="stat-num" id="dash-revenue">₹0</div><div>Revenue</div></div>
+          <div class="stat-card blue"><div class="stat-num" id="dash-users">0</div><div>Users</div></div>
+          <div class="stat-card red"><div class="stat-num" id="dash-products">0</div><div>Products</div></div>
+        </div>
+        <div class="dash-grid">
+          <div class="dash-card">
+            <h3>Recent Orders</h3>
+            <div id="recent-orders-list"></div>
+          </div>
+          <div class="dash-card">
+            <h3>Order Status</h3>
+            <div id="order-status-chart"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Tab -->
+      <div id="tab-products" class="admin-tab hidden">
+        <div class="tab-header">
+          <h1>📦 Products</h1>
+          <button class="btn-primary" onclick="openAddProduct()">+ Add Product</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="products-table">
+            <thead><tr><th>ID</th><th>Name</th><th>Category</th><th>Price</th><th>Qty</th><th>State</th><th>Rating</th><th>Actions</th></tr></thead>
+            <tbody id="products-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Orders Tab -->
+      <div id="tab-orders" class="admin-tab hidden">
+        <h1>🛒 All Orders</h1>
+        <div class="filter-bar">
+          <select id="order-status-filter" onchange="filterOrders()">
+            <option value="">All Status</option>
+            <option>Confirmed</option><option>Processing</option><option>Out for Delivery</option><option>Delivered</option><option>Cancelled</option>
+          </select>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Order ID</th><th>Customer</th><th>Items</th><th>Total</th><th>Payment</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="orders-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Users Tab -->
+      <div id="tab-users" class="admin-tab hidden">
+        <h1>👥 All Users</h1>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>ID</th><th>Name</th><th>Contact</th><th>Address</th><th>Orders</th><th>Joined</th></tr></thead>
+            <tbody id="users-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Delivery Tab -->
+      <div id="tab-delivery" class="admin-tab hidden">
+        <div class="tab-header">
+          <h1>🛵 Delivery Boys</h1>
+          <button class="btn-primary" onclick="openAddDelivery()">+ Add Delivery Boy</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>ID</th><th>Name</th><th>Mobile</th><th>Zone</th><th>Active Orders</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="delivery-tbody"></tbody>
+          </table>
+        </div>
+
+        <div class="tab-header" style="margin-top:2rem">
+          <h2>📋 Assign Delivery</h2>
+        </div>
+        <div class="assign-delivery-section" id="assign-delivery-section"></div>
+      </div>
+
+      <!-- Team Tab -->
+      <div id="tab-team" class="admin-tab hidden">
+        <h1>👑 Team Management</h1>
+        <div class="team-grid">
+          <div class="team-section">
+            <div class="tab-header">
+              <h3>Admins</h3>
+              <button class="btn-primary btn-sm" onclick="openAddAdmin()">+ Add Admin</button>
+            </div>
+            <div id="admin-list"></div>
+          </div>
+          <div class="team-section">
+            <div class="tab-header">
+              <h3>Leaders</h3>
+              <button class="btn-primary btn-sm" onclick="openAddLeader()">+ Add Leader</button>
+            </div>
+            <div id="leader-list"></div>
+          </div>
+        </div>
+
+        <div class="rbac-section">
+          <h3>🔐 Role Based Access Control (RBAC)</h3>
+          <div class="rbac-grid" id="rbac-grid"></div>
+        </div>
+      </div>
+
+      <!-- Spreadsheet DB Tab -->
+      <div id="tab-spreadsheet" class="admin-tab hidden">
+        <h1>📊 Spreadsheet Database</h1>
+        <div class="spreadsheet-actions">
+          <button class="btn-primary" onclick="exportToExcel('all')">📥 Export All Data</button>
+          <button class="btn-outline" onclick="exportToExcel('orders')">Export Orders</button>
+          <button class="btn-outline" onclick="exportToExcel('products')">Export Products</button>
+          <button class="btn-outline" onclick="exportToExcel('users')">Export Users</button>
+          <label class="btn-outline">
+            📤 Import Data
+            <input type="file" accept=".xlsx,.csv" onchange="importFromExcel(event)" style="display:none">
+          </label>
+        </div>
+        <div id="spreadsheet-preview" class="spreadsheet-preview"></div>
+      </div>
+
+      <!-- Settings Tab -->
+      <div id="tab-settings" class="admin-tab hidden">
+        <h1>⚙️ Settings</h1>
+        <div class="settings-grid">
+          <div class="settings-card">
+            <h3>🔑 Change Admin Password</h3>
+            <div class="input-group"><input type="password" id="set-admin-user" placeholder="Select Admin (admin / admin2)" /></div>
+            <div class="input-group"><input type="password" id="set-new-pass" placeholder="New Password" /></div>
+            <div class="input-group"><input type="password" id="set-confirm-pass" placeholder="Confirm Password" /></div>
+            <button class="btn-primary" onclick="changeAdminPass()">Update Password</button>
+          </div>
+          <div class="settings-card">
+            <h3>🏪 Store Settings</h3>
+            <div class="input-group"><input type="text" id="set-store-name" value="BharatMart" placeholder="Store Name" /></div>
+            <div class="input-group"><input type="text" id="set-delivery-fee" value="0" placeholder="Delivery Fee (₹)" /></div>
+            <div class="input-group"><input type="number" id="set-min-order" value="99" placeholder="Min Order Amount" /></div>
+            <button class="btn-primary" onclick="saveSettings()">Save Settings</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN MODAL -->
+<div id="admin-login-modal" class="modal hidden">
+  <div class="modal-overlay"></div>
+  <div class="modal-box">
+    <div class="auth-logo">🔐 Admin Access</div>
+    <h2>Admin Login</h2>
+    <div class="input-group">
+      <input type="text" id="admin-username" placeholder="Username" />
+    </div>
+    <div class="input-group">
+      <input type="password" id="admin-password" placeholder="Password" />
+    </div>
+    <div id="admin-login-error" class="error-msg hidden"></div>
+    <button class="btn-primary full-width" onclick="adminLogin()">Login to Admin Panel</button>
+    <button class="btn-ghost full-width" onclick="closeAdminLogin()">Cancel</button>
+  </div>
+</div>
+
+<!-- ADD PRODUCT MODAL -->
+<div id="add-product-modal" class="modal hidden">
+  <div class="modal-overlay" onclick="closeAddProduct()"></div>
+  <div class="modal-box large-modal">
+    <button class="modal-close" onclick="closeAddProduct()">✕</button>
+    <h2 id="product-modal-title">Add New Product</h2>
+    <div class="form-grid">
+      <div class="input-group"><label>Product Name</label><input type="text" id="prod-name" placeholder="e.g. Basmati Rice 5kg" /></div>
+      <div class="input-group"><label>Category</label>
+        <select id="prod-cat">
+          <option>Agriculture</option><option>Fashion</option><option>Electronics</option>
+          <option>Handicrafts</option><option>Ayurveda</option><option>Food & Spices</option>
+          <option>Jewellery</option><option>Home & Living</option><option>Books</option>
+          <option>Wellness</option><option>Auto Parts</option><option>Music & Arts</option>
+        </select>
+      </div>
+      <div class="input-group"><label>Price (₹)</label><input type="number" id="prod-price" placeholder="999" /></div>
+      <div class="input-group"><label>Original Price (₹)</label><input type="number" id="prod-orig-price" placeholder="1299" /></div>
+      <div class="input-group"><label>Quantity in Stock</label><input type="number" id="prod-qty" placeholder="100" /></div>
+      <div class="input-group"><label>State of Origin</label>
+        <select id="prod-state">
+          <option>Rajasthan</option><option>Gujarat</option><option>Kerala</option>
+          <option>Tamil Nadu</option><option>West Bengal</option><option>Punjab</option>
+          <option>Uttar Pradesh</option><option>Maharashtra</option><option>Karnataka</option>
+          <option>Assam</option><option>Odisha</option><option>Himachal Pradesh</option>
+        </select>
+      </div>
+      <div class="input-group full-span"><label>Description</label><textarea id="prod-desc" placeholder="Product description..." rows="3"></textarea></div>
+      <div class="input-group"><label>Emoji Icon</label><input type="text" id="prod-emoji" placeholder="🌾" /></div>
+      <div class="input-group"><label>Tags</label><input type="text" id="prod-tags" placeholder="organic, fresh, local" /></div>
+    </div>
+    <input type="hidden" id="edit-product-id" value="">
+    <button class="btn-primary full-width" onclick="saveProduct()">💾 Save Product</button>
+  </div>
+</div>
+
+<!-- ADD DELIVERY BOY MODAL -->
+<div id="add-delivery-modal" class="modal hidden">
+  <div class="modal-overlay" onclick="closeAddDelivery()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeAddDelivery()">✕</button>
+    <h2>Add Delivery Boy</h2>
+    <div class="input-group"><label>Name</label><input type="text" id="del-boy-name" placeholder="Full Name" /></div>
+    <div class="input-group"><label>Mobile</label><input type="text" id="del-boy-mobile" placeholder="Mobile Number" /></div>
+    <div class="input-group"><label>Zone</label>
+      <select id="del-boy-zone">
+        <option>North Delhi</option><option>South Delhi</option><option>East Delhi</option>
+        <option>West Delhi</option><option>Central Delhi</option><option>Noida</option><option>Gurgaon</option>
+      </select>
+    </div>
+    <div class="input-group"><label>Vehicle</label>
+      <select id="del-boy-vehicle">
+        <option>Bike</option><option>Bicycle</option><option>Scooter</option>
+      </select>
+    </div>
+    <button class="btn-primary full-width" onclick="saveDeliveryBoy()">Add Delivery Boy</button>
+  </div>
+</div>
+
+<!-- ADD ADMIN/LEADER MODAL -->
+<div id="add-team-modal" class="modal hidden">
+  <div class="modal-overlay" onclick="closeAddTeam()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeAddTeam()">✕</button>
+    <h2 id="team-modal-title">Add Team Member</h2>
+    <div class="input-group"><label>Name</label><input type="text" id="team-name" /></div>
+    <div class="input-group"><label>Username</label><input type="text" id="team-username" /></div>
+    <div class="input-group"><label>Password</label><input type="password" id="team-password" /></div>
+    <input type="hidden" id="team-role">
+    <button class="btn-primary full-width" onclick="saveTeamMember()">Add Member</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast hidden"></div>
+
+<!-- SCRIPTS -->
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
